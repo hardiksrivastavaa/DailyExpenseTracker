@@ -3,60 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Expense Tracker page for managing daily and monthly expenses.">
-    <meta name="keywords" content="tracker, expenses, daily expenses, monthly expenses">
+    <meta name="description" content="Daily Expense Tracker - Track your daily and monthly expenses.">
+    <meta name="keywords" content="expense tracker, daily expenses, budget, finance">
     <meta name="author" content="Hardik Srivastava">
     <title>Expense Tracker</title>
+    <link rel="icon" href="det.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.2/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(to right, #6ee7b7, #3b82f6);
-            height: 100vh;
+            background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
         .container {
             max-width: 600px;
             width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        .logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #a6c1ee;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #a6c1ee;
+            box-shadow: 0 0 5px rgba(166, 193, 238, 0.5);
+        }
+        .expenses-list {
+            margin-bottom: 1.5rem;
+        }
+        .expense-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            background-color: #fff;
+        }
+        .expense-item button {
+            background-color: #ef4444;
+            color: #fff;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .expense-item button:hover {
+            background-color: #dc2626;
+        }
+        .summary {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #a6c1ee;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .save-logout-btn {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #a6c1ee;
+            color: #fff;
+            font-weight: 700;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .save-logout-btn:hover {
+            background-color: #7da4e6;
         }
     </style>
 </head>
 <body>
-    <div class="container bg-white p-8 rounded-lg shadow-lg">
-        <h2 class="text-3xl font-semibold mb-6 text-gray-800">Expense Tracker</h2>
-        <div>
-            <label for="expense-date" class="block text-gray-700">Select Date</label>
-            <input id="expense-date" type="date" class="w-full p-3 border border-gray-300 rounded mb-4">
-            <label for="expense-name" class="block text-gray-700">Expense Name</label>
-            <input id="expense-name" type="text" class="w-full p-3 border border-gray-300 rounded mb-4" placeholder="Enter expense name">
-            <label for="expense-amount" class="block text-gray-700">Amount</label>
-            <input id="expense-amount" type="number" class="w-full p-3 border border-gray-300 rounded mb-4" placeholder="Enter amount">
-            <button id="add-expense-btn" class="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors mb-4">Add Expense</button>
-            <button id="save-and-logout-btn" class="w-full py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">Save & Logout</button>
+    <div class="container" id="tracker-container">
+        <img src="det.png" alt="Daily Expense Tracker Logo" class="logo">
+        <h1>Daily Expense Tracker</h1>
+        <div class="input-group">
+            <label for="expense-name">Expense Name</label>
+            <input id="expense-name" type="text" placeholder="Enter expense name">
         </div>
-        <div class="mt-6">
-            <h3 class="text-2xl font-semibold mb-4 text-gray-800">Expenses for <span id="selected-date" class="font-normal">--</span></h3>
-            <ul id="expense-list" class="list-disc list-inside mb-4 text-gray-700"></ul>
-            <div class="text-gray-700">
-                <p class="font-semibold">Daily Total: ₹<span id="daily-total">0.00</span></p>
-                <p class="font-semibold">Monthly Total: ₹<span id="monthly-total">0.00</span></p>
-            </div>
+        <div class="input-group">
+            <label for="expense-amount">Amount</label>
+            <input id="expense-amount" type="number" placeholder="Enter amount">
         </div>
-        <footer class="mt-6 text-center text-gray-700">
-            <p>© 2024 Hardik Srivastava</p>
-            <div class="flex justify-center space-x-4 mt-2">
-                <a href="https://github.com/yourusername" class="text-gray-700 hover:text-gray-900"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/yourusername" class="text-gray-700 hover:text-gray-900"><i class="fab fa-linkedin"></i></a>
-                <a href="https://instagram.com/yourusername" class="text-gray-700 hover:text-gray-900"><i class="fab fa-instagram"></i></a>
-                <a href="https://x.com/yourusername" class="text-gray-700 hover:text-gray-900"><i class="fab fa-x"></i></a>
-                <a href="https://wa.me/yourphonenumber" class="text-gray-700 hover:text-gray-900"><i class="fab fa-whatsapp"></i></a>
-            </div>
-        </footer>
+        <div class="input-group">
+            <label for="expense-date">Select Date</label>
+            <input id="expense-date" type="date">
+        </div>
+        <button id="add-expense-btn" class="save-logout-btn">Add Expense</button>
+        
+        <div class="expenses-list" id="expenses-list"></div>
+
+        <div class="summary" id="daily-summary">Total Daily Expenses: $0</div>
+        <div class="summary" id="monthly-summary">Total Monthly Expenses: $0</div>
+        
+        <button id="save-logout-btn" class="save-logout-btn">Save & Logout</button>
     </div>
-    <script src="app.js"></script>
+
+    <script>
+        // GSAP Animation
+        gsap.to("#tracker-container", {
+            duration: 1.5,
+            opacity: 1,
+            y: 0,
+            ease: "power4.out"
+        });
+
+        // JS logic for handling expenses (this assumes the JS code in app.js)
+    </script>
 </body>
 </html>
