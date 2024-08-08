@@ -7,7 +7,7 @@
     <meta name="keywords" content="expense tracker, budget, finance, daily expenses">
     <meta name="author" content="Hardik Srivastava">
     <title>Welcome - Expense Tracker</title>
-    <link rel="icon" href="det.png" type="image/png">
+    <link rel="icon" href="favicon.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.2/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -25,7 +25,7 @@
         }
         .container {
             background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
+            padding: 30px auto; 
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             max-width: 600px;
@@ -64,6 +64,7 @@
         }
         .social-icons {
             margin-top: 2rem;
+            margin-bottom: 1rem;
         }
         .social-icons a {
             margin: 0 10px;
@@ -79,13 +80,14 @@
 <body>
     <div class="container" id="welcome-container">
         <img src="det.png" alt="Daily Expense Tracker Logo" class="logo">
-        <h1>Welcome to Expense Tracker</h1>
+        <h1>Welcome to <br /> Daily Expense Tracker</h1>
         <p>Track your daily and monthly expenses effortlessly. Manage your budget and stay on top of your finances with our easy-to-use tool.</p>
         <div class="btn-group">
             <a href="login.html">Login</a>
             <a href="register.html">Register</a>
         </div>
         <div class="social-icons">
+            <p>&copy; Hardik Srivastava 2024, All right reserved.</p>
             <a href="https://github.com/hardiksrivastava" target="_blank"><i class="fab fa-github"></i></a>
             <a href="https://www.linkedin.com/in/hardiksrivastavaa/" target="_blank"><i class="fab fa-linkedin"></i></a>
             <a href="https://www.instagram.com/hardiksrivastavaaa/" target="_blank"><i class="fab fa-instagram"></i></a>
