@@ -86,7 +86,7 @@ function renderExpenses(date) {
             const expenseItem = document.createElement('div');
             expenseItem.classList.add('expense-item');
             expenseItem.innerHTML = `
-                <span>${expense.name} - $${expense.amount.toFixed(2)}</span>
+                <span>${expense.name} - &#8377; ${expense.amount.toFixed()}</span>
                 <button onclick="deleteExpense('${date}', ${index})">Delete</button>
             `;
             expensesList.appendChild(expenseItem);
@@ -96,7 +96,7 @@ function renderExpenses(date) {
 
 function calculateAndDisplaySummary(date) {
     const dailyTotal = expenses[date] ? expenses[date].reduce((sum, expense) => sum + expense.amount, 0) : 0;
-    document.getElementById('daily-summary').innerText = `Total Daily Expenses: $${dailyTotal.toFixed(2)}`;
+    document.getElementById('daily-summary').innerText = `Total Daily Expenses : ${dailyTotal.toFixed()}`;
 
     const monthlyTotal = Object.keys(expenses).reduce((sum, key) => {
         if (key.startsWith(date.slice(0, 7))) {
@@ -105,7 +105,7 @@ function calculateAndDisplaySummary(date) {
         return sum;
     }, 0);
 
-    document.getElementById('monthly-summary').innerText = `Total Monthly Expenses: $${monthlyTotal.toFixed(2)}`;
+    document.getElementById('monthly-summary').innerText = `Total Monthly Expenses : ${monthlyTotal.toFixed()}`;
 }
 
 function clearExpenseInputs() {
