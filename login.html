@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Login page for the Expense Tracker application.">
     <meta name="keywords" content="login, expense tracker, budget, finance">
     <meta name="author" content="Hardik Srivastava">
-    <title>Login - Expense Tracker</title>
+    <title>Login - Daily Expense Tracker</title>
     <link rel="icon" href="det.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.2/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -14,14 +15,14 @@
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
             padding: 20px;
         }
+
         .container {
             max-width: 400px;
             width: 100%;
@@ -33,26 +34,31 @@
             opacity: 0;
             transform: translateY(50px);
         }
+
         .logo {
             width: 100px;
             height: auto;
             margin-bottom: 1rem;
         }
+
         h1 {
             font-size: 2rem;
             font-weight: 700;
             color: #a6c1ee;
             margin-bottom: 1.5rem;
         }
+
         .input-group {
             margin-bottom: 1.5rem;
         }
+
         .input-group label {
             display: block;
             font-weight: 600;
             color: #555;
             margin-bottom: 0.5rem;
         }
+
         .input-group input {
             width: 100%;
             padding: 0.75rem;
@@ -60,11 +66,13 @@
             border-radius: 5px;
             font-size: 1rem;
         }
+
         .input-group input:focus {
             outline: none;
             border-color: #a6c1ee;
             box-shadow: 0 0 5px rgba(166, 193, 238, 0.5);
         }
+
         .login-btn {
             display: block;
             width: 100%;
@@ -77,11 +85,26 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
+
         .login-btn:hover {
             background-color: #8faecb;
         }
+
+        .login-register-toggle {
+            margin-top: 1rem;
+            color: #555;
+            font-weight: 600;
+        }
+
+        .login-register-toggle a {
+            color: #a6c1ee;
+            text-decoration: none;
+            margin-left: 5px;
+            font-weight: 700;
+        }
     </style>
 </head>
+
 <body>
     <div class="container" id="login-container">
         <img src="det.png" alt="Expense Tracker Logo" class="logo">
@@ -95,10 +118,12 @@
             <input type="password" id="password" placeholder="Enter your password" required>
         </div>
         <button id="login-btn" class="login-btn">Login</button>
+        <p class="login-register-toggle">Don't have an account? <a href="register.html">Register here</a></p>
     </div>
     <script src="app.js"></script>
     <script>
-        gsap.to(".container", {opacity: 1, y: 0, duration: 1, ease: "power4.out"});
+        gsap.to(".container", { opacity: 1, y: 0, duration: 1, ease: "power4.out" });
     </script>
 </body>
+
 </html>
