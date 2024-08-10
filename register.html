@@ -15,7 +15,7 @@
     <style>
         body {
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            background: linear-gradient(to right, #34d399, #3b82f6);
+            background: linear-gradient(to right, #34d399, #3b82f6);            
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -88,7 +88,7 @@
             transition: background-color 0.3s;
         }
 
-        .register-btn:hover {
+        .register-btn:hover {           
             background-color: #2563eb;
         }
 
@@ -111,44 +111,24 @@
     <div class="container" id="register-container">
         <img src="det.png" alt="Expense Tracker Logo" class="logo">
         <h1>Register</h1>
-        <!-- Updated form element -->
-        <form name="userdata" id="userdata">
-            <div class="input-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Enter your name" required>
-            </div>
-            <div class="input-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-            </div>
-            <button type="submit" id="register-btn" class="register-btn">Register</button>
-        </form>
+        <div class="input-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
+        </div>
+        <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" required>
+        </div>
+        <button id="register-btn" class="register-btn">Register</button>
         <p class="login-register-toggle">Already have an account? <br /><a href="login.html">Login here</a></p>
     </div>
-
-    <!-- Include GSAP and the form submission script -->
     <script src="app.js"></script>
     <script>
         gsap.to(".container", { opacity: 1, y: 0, duration: 1, ease: "power4.out" });
-
-        const scriptURL = "https://script.google.com/macros/s/AKfycbwQkUH37JA1PZlVaGHbPtiyCP00uHwQg1qjlxVvBuyCV5AqApynLUTtezOonRtS2IxX/exec";
-        const form = document.forms["userdata"];
-
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-            fetch(scriptURL, { method: "POST", body: new FormData(form) })
-                .then((response) =>
-                    console.log("Thank you! Your form is submitted successfully.")
-                )
-                .then(() => {
-                    window.location.reload();
-                })
-                .catch((error) => console.error("Error!", error.message));
-        });
     </script>
 </body>
 
