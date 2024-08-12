@@ -15,7 +15,7 @@ The Daily Expense Tracker is a web application designed to help users track thei
 
 ## Live Demo
 
-You can view the live application at: [Daily Expense Tracker](https://hardiksrivastavaa.github.io/DailyExpenseTracker/)
+You can view the live application at: [Daily Expense Tracker](https://daily-expense-tracker-roan.vercel.app/)
 
 ## Usage
 
